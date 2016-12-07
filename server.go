@@ -3,7 +3,7 @@ package main
 // imports with the underscore are just drivers, without it you have full access
 import (
 	"fmt"
-	"time"
+//	"time"
 	"net/http"
 	"github.com/gin-gonic/gin"
 	"database/sql"
@@ -37,10 +37,12 @@ func main() {
         if c.BindJSON(&json) == nil {
 			fmt.Println(json.Name, json.Time)
 			c.JSON(http.StatusOK, gin.H{"status": "all good"})
-//			_, err = stmtIns.Exec(i, (i * i)) // Insert tuples (i, i^2)
+			_, err = stmtIns.Exec(json.Name, json.Time) 
         }
     })
 
 
     router.Run(":8080")
 }
+
+func insert_db
